@@ -1,9 +1,13 @@
 import sys
 import pygame
+
 from settings import Settings
 from ship import Ship
-from bullet import Bullet
-from alien import Alien
+
+from bullet_manager import BulletManager
+from fleet_manager import FleetManager
+from game_events import GameEventHandler
+from game_renderer import GameRenderer
 # Certifique-se de que os arquivos settings, ship e alien estão na mesma pasta
 # from settings import Settings
 # from ship import Ship
@@ -151,7 +155,7 @@ class AlienInvasion:
 
         for row_number in range(number_rows):
             for alien_number in range(number_aliens_x):
-                alien = Alien(self.screen, self.settings)
+                alien = alien(self.screen, self.settings)
                 alien.x = alien_width + 2 * alien_width * alien_number
                 alien.rect.x = alien.x
                 alien.y = alien_height + 2 * alien_height * row_number
@@ -162,3 +166,4 @@ class AlienInvasion:
 if __name__ == "__main__":
     alien_invasion = AlienInvasion()
     alien_invasion.run_game()
+
