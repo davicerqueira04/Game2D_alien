@@ -40,27 +40,27 @@ class FleetManager:
             for alien_number in range(number_aliens_x):
                 self.__create_alien(alien_number, row_number, alien_width, alien_height)
 
-        def _update_aliens(self) -> None:
-            """Verifica se a frota de alienígenas está em uma borda, então atualiza as posições de todos os alienígenas na frota."""
-            self._check_fleet_edges()
-            self.aliens.update()
-            self._check_ship_collision()
+    def _update_aliens(self) -> None:
+        """Verifica se a frota de alienígenas está em uma borda, então atualiza as posições de todos os alienígenas na frota."""
+        self._check_fleet_edges()
+        self.aliens.update()
+        self._check_ship_collision()
 
-        def _check_fleet_edges(self) -> None:
-            """Responde apropriadamente se algum alienígena tiver alcançado uma borda."""
-            for alien in self.aliens.sprites():
-                if alien.check_edges():
-                    self._change_fleet_direction()
-                    break
+    def _check_fleet_edges(self) -> None:
+        """Responde apropriadamente se algum alienígena tiver alcançado uma borda."""
+        for alien in self.aliens.sprites():
+            if alien.check_edges():
+                self._change_fleet_direction()
+                break
 
-        def _change_fleet_direction(self) -> None:
-            """Desce a frota e muda sua direção."""
-            for alien in self.aliens.sprites():
-                alien.rect.y += self.settings.fleet_drop_speed
-            self.settings.fleet_direction *= -1
+    def _change_fleet_direction(self) -> None:
+        """Desce a frota e muda sua direção."""
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.settings.fleet_drop_speed
+        self.settings.fleet_direction *= -1
 
-        def _check_ship_collision(self) -> None:
-            """Verifica se a nave colidiu com algum alienígena."""
-            if pygame.sprite.spritecollideany(self.ship, self.aliens):
-                print("A nave foi atingida!")
-                sys.exit()
+    def _check_ship_collision(self) -> None:
+        """Verifica se a nave colidiu com algum alienígena."""
+        if pygame.sprite.spritecollideany(self.ship, self.aliens):
+            print("A nave foi atingida!")
+            sys.exit()

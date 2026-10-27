@@ -37,10 +37,10 @@ class AlienInvasion:
         self.event_handler = GameEventHandler(self.ship, self.bullet_manager)
         self.renderer = GameRenderer(
             self.screen,
-            self.bg_color,
             self.ship,
             self.fleet_manager.aliens,
             self.bullet_manager.bullets,
+            self.bg_color,
         )
 
     def _update_game_state(self) -> None:
@@ -55,9 +55,10 @@ class AlienInvasion:
         self.fleet_manager.create_fleet()  # Cria a frota de alienígenas para ser desenhada na tela
 
         while True:
-            self.event_handler._check_events()
+            for event in pygame.event.get():
+                self.event_handler.check_events(event)
             self._update_game_state()
-            self.renderer._render_screen()
+            self.renderer.render_screen()
 
 # CORREÇÃO: Removidos os espaços extras. Agora o bloco inicia na margem esquerda.
 if __name__ == "__main__":

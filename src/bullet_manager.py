@@ -1,3 +1,7 @@
+import pygame
+from bullet import Bullet
+
+
 class BulletManager:
     """Classe responsável por gerenciar os projéteis disparados pela nave."""
 
@@ -27,4 +31,4 @@ class BulletManager:
 
     def _check_bullet_alien_collisions(self, aliens) -> None:
         """Verifica colisões entre projéteis e alienígenas."""
-        pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
+        pygame.sprite.groupcollide(self.bullets, aliens, True, True)

@@ -1,3 +1,6 @@
+import pygame
+
+
 class GameRenderer:
     """Classe responsável por renderizar os elementos do jogo na tela."""
 
